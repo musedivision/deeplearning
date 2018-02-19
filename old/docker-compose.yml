@@ -1,0 +1,9 @@
+version: "2"
+services:
+  notebook:
+    container_name: notebook
+    build: containers/notebook/.
+    volumes:
+      - ./:/root/sharedfolder
+    ports:
+        - 8888:8888

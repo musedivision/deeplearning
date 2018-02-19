@@ -1,0 +1,11 @@
+{
+  "name": "ios-notifications",
+  "version": "0.0.1",
+  "scripts": {},
+  "dependencies": {
+    "apn": "^2.1.5",
+    "express": "^4.16.2",
+    "throng": "^4.0.0",
+    "winston": "^2.2.0"
+  }
+}

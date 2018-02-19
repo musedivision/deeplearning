@@ -1,0 +1,8 @@
+old/data/
+*.pyc
+*.h5
+*.iml
+*.xml
+.idea
+.vscode
+docker-compose.override.yml
