@@ -1,3 +1,2 @@
 c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
-c.NotebookApp.password = 'sha1:f6564ab24a0d:836eee5316ca20f5ebc1c20aba99186614018484'

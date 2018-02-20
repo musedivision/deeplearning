@@ -1,4 +1,4 @@
-old/data/
+sharedfolder/old/data/
 *.pyc
 *.h5
 *.iml
@@ -6,3 +6,5 @@ old/data/
 .idea
 .vscode
 docker-compose.override.yml
+.env
+.fastai

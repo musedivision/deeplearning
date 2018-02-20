@@ -1,5 +1,6 @@
 SHELL:=/bin/bash
 
+include .env
 
 #
 #   CONFIGURABLE VARIABLES
@@ -9,12 +10,14 @@ SHELL:=/bin/bash
 #	Project name is propagated to the ECS cluster and it is use to ensure we dont accidentally change the wrong live service
 #
 #
-export PROJECT_NAME										:= push
+export PROJECT_NAME										:= deep
 
 #
 #	allows containers to have make targets locally that are not in this makefile.
 #
 export CONTAINER_TARGETS_WHITELIST						:= refresh
+
+
 
 
 #
@@ -31,6 +34,7 @@ export ALL_ARGS											:= $(wordlist 1, ${WORD_COUNT}, $(MAKECMDGOALS) )
 export ARGS_0											:= $(word 1, $(ALL_ARGS))
 export ENV												:= dev
 
+export FASTAI											:= .fastai
 
 
 .PHONY: $(CONTAINERS) $(CONTAINER_TARGETS_WHITELIST) build clean deploy all
@@ -49,17 +53,23 @@ $(CONTAINERS):
 $(CONTAINER_TARGETS_WHITELIST):
 	$(MAKE) $(CONTAINERS) CMD=$(ARGS_0)
 
-build:
+build: ${FASTAI}
 	docker-compose down || true
 	@$(MAKE) $(CONTAINERS) CMD=build
 	$(MAKE) docker-compose.override.yml
 	docker-compose up -d
 
 clean:
-	rm -Rf node_modules
 	rm -f docker-compose.override.yml
 	@$(MAKE) $(CONTAINERS) CMD=clean
 	docker rmi $(docker images | grep "^<none>" | awk '{print $3}') || true
+
+nuke:
+	rm -rf ./.fastai
+
+${FASTAI}: ./containers/example/src/environment.yml
+	git clone https://github.com/fastai/fastai.git ./.fastai
+	cp ./.fastai/environment.yml ./containers/example/src/.
 
 
 #

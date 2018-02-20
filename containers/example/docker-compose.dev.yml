@@ -2,7 +2,7 @@
     container_name: CONTAINER_NAME
     build: containers/CONTAINER_REL_PATH/.
     volumes:
-      - ./containers/CONTAINER_REL_PATH/src:/var/www/app/src
+      - ./sharedfolder:/home
     environment:
       - DATABASE_URL=postgres://postgres:password@postgres:5432/propertymgr_daily_snapshot
     ports:
