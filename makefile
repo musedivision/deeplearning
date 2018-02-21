@@ -45,7 +45,8 @@ export FASTAI											:= .fastai
 # This is the first and default recipie.  typing make  or make all will run
 # it causing you to switch to this aws region and this projects credentials
 #
-all:
+all: /usr/local/bin/docker-compose
+
 
 $(CONTAINERS):
 	@cd $@ && $(MAKE) $(CMD) || true
@@ -71,6 +72,10 @@ ${FASTAI}: ./containers/example/src/environment.yml
 	git clone https://github.com/fastai/fastai.git ./.fastai
 	cp ./.fastai/environment.yml ./containers/example/src/.
 
+/usr/local/bin/docker-compose:
+	sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
+	docker-compose --version
 
 #
 #
@@ -83,3 +88,5 @@ docker-compose.override.yml:
 	@echo version: '"$(DOCKER_COMPOSE_VERSION)"' >> docker-compose.override.yml
 	@echo services: >> docker-compose.override.yml
 	@$(MAKE) $(CONTAINERS) CMD=compile >> docker-compose.override.yml
+
+
