@@ -45,6 +45,8 @@ RUN echo "c.NotebookApp.password = '${PASSWORD}'" >> /home/.jupyter/jupyter_note
 #ADD  ../../.fastai/environment.yml /home/environment.yml
 RUN /bin/bash -c 'conda env update'
 
+RUN cd /home \
+	&& git clone https://github.com/fastai/fastai.git ./.fastai
 
 RUN cd /home/fastai \
 	&& source activate fastai \
