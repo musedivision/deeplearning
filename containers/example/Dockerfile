@@ -58,4 +58,4 @@ EXPOSE 8888
 
 # Configure container startup
 ENTRYPOINT ["tini", "--"]
-CMD ["start.sh"]
+CMD ["/home/start.sh"]
