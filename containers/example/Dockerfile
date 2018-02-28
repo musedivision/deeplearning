@@ -47,11 +47,10 @@ RUN /bin/bash -c 'conda env update'
 
 
 
-RUN /bin/bash -c 'cd ~/fastai \
-	&& source activate fastai \
+RUN /bin/bash -c 'source activate fastai \
 	&& pip install ipywidgets \
 	&& jupyter nbextension enable --py widgetsnbextension --sys-prefix'
-	
+
 EXPOSE 8888
 
 CMD ["/bin/bash -c","jupyter", "notebook"]
