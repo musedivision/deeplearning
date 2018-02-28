@@ -48,8 +48,7 @@ RUN /bin/bash -c 'conda env update'
 RUN cd /home \
 	&& git clone https://github.com/fastai/fastai.git ./.fastai
 
-RUN cd /home/fastai \
-	&& source activate fastai \
+RUN source activate fastai \
 	&& pip install ipywidgets \
 	&& jupyter nbextension enable --py widgetsnbextension --sys-prefix
 
