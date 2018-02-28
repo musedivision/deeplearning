@@ -25,7 +25,11 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 
 ENV PATH /opt/conda/bin:$PATH
 
-
+# Install Tini
+RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.10.0/tini && \
+    echo "1361527f39190a7338a0b434bd8c88ff7233ce7b9a4876f3315c22fce7eca1b0 *tini" | sha256sum -c - && \
+    mv tini /usr/local/bin/tini && \
+    chmod +x /usr/local/bin/tini
 
 FROM depedencies as fastai
 
@@ -46,11 +50,12 @@ RUN echo "c.NotebookApp.password = '${PASSWORD}'" >> /home/.jupyter/jupyter_note
 RUN /bin/bash -c 'conda env update'
 
 
-
 RUN /bin/bash -c 'source activate fastai \
 	&& pip install ipywidgets \
 	&& jupyter nbextension enable --py widgetsnbextension --sys-prefix'
 
 EXPOSE 8888
 
-CMD ["/bin/bash -c","jupyter", "notebook"]
+# Configure container startup
+ENTRYPOINT ["tini", "--"]
+CMD ["start.sh"]
