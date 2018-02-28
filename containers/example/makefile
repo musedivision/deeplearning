@@ -29,10 +29,13 @@ build:
 	docker build . -t ${CONTAINER_NAME}:latest
 
 deploy: build
+	docker tag ${IMAGE_NAME}:latest ${DOCKER_REPO}/${IMAGE_NAME}:${TAG}
+	docker push ${DOCKER_REPO}/${IMAGE_NAME}:${TAG}
 
 # provide the ENV=live to compile the live docker compose branch
 compile:
 	@cat docker-compose.${ENV}.yml | sed 's/CONTAINER_NAME/${CONTAINER_NAME}/g' | sed 's/CONTAINER_REL_PATH/${CONTAINER_REL_PATH}/g'
+
 
 # IMPORTANT NOTE:
 #

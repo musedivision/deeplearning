@@ -15,9 +15,8 @@ export PROJECT_NAME										:= deep
 #
 #	allows containers to have make targets locally that are not in this makefile.
 #
+
 export CONTAINER_TARGETS_WHITELIST						:= refresh
-
-
 
 
 #
@@ -35,7 +34,7 @@ export ARGS_0											:= $(word 1, $(ALL_ARGS))
 export ENV												:= dev
 
 export FASTAI											:= .fastai
-
+export DOCKER_REPO										:= musedivision
 
 .PHONY: $(CONTAINERS) $(CONTAINER_TARGETS_WHITELIST) build clean deploy all
 .SILENT: $(CONTAINERS) $(CONTAINER_TARGETS_WHITELIST) all
