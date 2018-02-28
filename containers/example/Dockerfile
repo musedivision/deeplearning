@@ -49,7 +49,7 @@ RUN /bin/bash -c 'conda env update'
 RUN cd ~/fastai \
 	&& source activate fastai \
 	&& pip install ipywidgets \
-	&& jupyter nbextension enable --py widgetsnbextension --sys-prefix'
+	&& jupyter nbextension enable --py widgetsnbextension --sys-prefix
 
 EXPOSE 8888
 
