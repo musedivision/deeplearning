@@ -45,13 +45,13 @@ RUN echo "c.NotebookApp.password = '${PASSWORD}'" >> /home/.jupyter/jupyter_note
 #ADD  ../../.fastai/environment.yml /home/environment.yml
 RUN /bin/bash -c 'conda env update'
 
-RUN cd /home \
-	&& git clone https://github.com/fastai/fastai.git ./.fastai
 
-RUN source activate fastai \
+
+RUN /bin/bash -c 'cd ~/fastai \
+	&& source activate fastai \
 	&& pip install ipywidgets \
-	&& jupyter nbextension enable --py widgetsnbextension --sys-prefix
-
+	&& jupyter nbextension enable --py widgetsnbextension --sys-prefix'
+	
 EXPOSE 8888
 
-CMD ["/bin/bash","jupyter", "notebook"]
+CMD ["/bin/bash -c","jupyter", "notebook"]
