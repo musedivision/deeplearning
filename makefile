@@ -33,6 +33,7 @@ export ALL_ARGS											:= $(wordlist 1, ${WORD_COUNT}, $(MAKECMDGOALS) )
 export ARGS_0											:= $(word 1, $(ALL_ARGS))
 export ENV												:= dev
 
+export TAG												:= ${shell date | md5 | cut -c27-}
 export FASTAI											:= .fastai
 export DOCKER_REPO										:= musedivision
 
@@ -53,11 +54,17 @@ $(CONTAINERS):
 $(CONTAINER_TARGETS_WHITELIST):
 	$(MAKE) $(CONTAINERS) CMD=$(ARGS_0)
 
+deploy:
+	@$(MAKE) $(CONTAINERS) CMD=deploy
+
 build: ${FASTAI}
 	docker-compose down || true
 	@$(MAKE) $(CONTAINERS) CMD=build
 	$(MAKE) docker-compose.override.yml
 	docker-compose up -d
+
+stop:
+	docker-compose down
 
 clean:
 	rm -f docker-compose.override.yml
@@ -67,7 +74,7 @@ clean:
 nuke:
 	rm -rf ./.fastai
 
-${FASTAI}: ./containers/example/src/environment.yml
+${FASTAI}:
 	git clone https://github.com/fastai/fastai.git ./.fastai
 	cp ./.fastai/environment.yml ./containers/example/src/.
 
