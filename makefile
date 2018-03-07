@@ -57,7 +57,7 @@ $(CONTAINER_TARGETS_WHITELIST):
 deploy:
 	@$(MAKE) $(CONTAINERS) CMD=deploy
 
-build: ${FASTAI}
+build:
 	docker-compose down || true
 	@$(MAKE) $(CONTAINERS) CMD=build
 	$(MAKE) docker-compose.override.yml
@@ -74,9 +74,6 @@ clean:
 nuke:
 	rm -rf ./.fastai
 
-${FASTAI}:
-	git clone https://github.com/fastai/fastai.git ./.fastai
-	cp ./.fastai/environment.yml ./containers/example/src/.
 
 /usr/local/bin/docker-compose:
 	sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose

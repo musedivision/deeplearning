@@ -1,5 +1,5 @@
 ###
-### copied base from paperspace/fastai-docker
+### copied base from paperspace/fastai-docker but didnt want all their layers
 ###
 
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
@@ -47,8 +47,7 @@ ENV USER fastai
 CMD source activate fastai
 CMD source ~/.bashrc
 
-
-#WORKDIR /data
+#WORKDIR /
 
 #RUN curl http://files.fast.ai/data/dogscats.zip --output dogscats.zip
 #RUN unzip -d . dogscats.zip
@@ -57,10 +56,15 @@ CMD source ~/.bashrc
 #RUN ln -s /data/ /notebooks/courses/dl1/
 #RUN ls -la /notebooks/courses/dl1/data/
 
-RUN mkdir -p /root/.jupyter
-ADD ./src/.jupyter/. /root/.jupyter
-
+#WORKDIR /notebooks
 # then run notebook
+
+#RUN mkdir -p /etc/jupyter
+#
+#COPY ./src/.jupyter/jupyter_notebook_config.py /etc/jupyter/
+#COPY ./src/.jupyter/jupyter_notebook_config.json /etc/jupyter/
+#
+#RUN chmod -R 777 /etc/jupyter/
 
 RUN chmod -R a+w /notebooks
 
