@@ -5,6 +5,6 @@
       - ./volume:/notebooks/volume
       - ./containers/CONTAINER_REL_PATH/src/.jupyter:/opt/conda/envs/fastai/etc/jupyter
     environment:
-      - DATABASE_URL=postgres://postgres:password@postgres:5432/propertymgr_daily_snapshot
+      - DATABASE_URL=
     ports:
         - 8889:8888
