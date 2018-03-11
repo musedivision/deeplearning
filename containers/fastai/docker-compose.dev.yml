@@ -2,7 +2,7 @@
     container_name: CONTAINER_NAME
     build: containers/CONTAINER_REL_PATH/.
     volumes:
-      - ./sharedfolder:/notebooks
+      - ./volume:/notebooks/volume
       - ./containers/CONTAINER_REL_PATH/src/.jupyter:/opt/conda/envs/fastai/etc/jupyter
     environment:
       - DATABASE_URL=postgres://postgres:password@postgres:5432/propertymgr_daily_snapshot

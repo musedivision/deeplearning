@@ -1,4 +1,5 @@
-sharedfolder/old/data/
+volume/data
+volume/fastai
 *.pyc
 *.h5
 *.iml

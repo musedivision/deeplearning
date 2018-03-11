@@ -33,7 +33,7 @@ RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-la
     /opt/conda/bin/conda install conda-build
 
 
-WORKDIR /notebooks
+WORKDIR /fastai
 
 RUN git clone https://github.com/fastai/fastai.git .
 RUN ls && /opt/conda/bin/conda env create
@@ -47,24 +47,17 @@ ENV USER fastai
 CMD source activate fastai
 CMD source ~/.bashrc
 
-#WORKDIR /
+WORKDIR /data
+
+RUN ln -s /data/ /fastai/courses/dl1/
 
 #RUN curl http://files.fast.ai/data/dogscats.zip --output dogscats.zip
 #RUN unzip -d . dogscats.zip
 #RUN rm dogscats.zip
 
-#RUN ln -s /data/ /notebooks/courses/dl1/
+
 #RUN ls -la /notebooks/courses/dl1/data/
-
-#WORKDIR /notebooks
-# then run notebook
-
-#RUN mkdir -p /etc/jupyter
-#
-#COPY ./src/.jupyter/jupyter_notebook_config.py /etc/jupyter/
-#COPY ./src/.jupyter/jupyter_notebook_config.json /etc/jupyter/
-#
-#RUN chmod -R 777 /etc/jupyter/
+WORKDIR /notebooks
 
 RUN chmod -R a+w /notebooks
 
