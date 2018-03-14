@@ -100,5 +100,5 @@ endif
 unzip-data:
 ifdef comp
 	mkdir ~/data/${comp}
-	find ~/.kaggle/competitions/${comp}/ -name "*.zip" -exec unzip {} ~/data/${comp} \;
+	find ~/.kaggle/competitions/${comp}/ -name "*.zip" -exec unzip {} -d ~/data/${comp} \;
 endif
