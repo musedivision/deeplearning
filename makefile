@@ -92,4 +92,13 @@ docker-compose.override.yml:
 	@echo services: >> docker-compose.override.yml
 	@$(MAKE) $(CONTAINERS) CMD=compile >> docker-compose.override.yml
 
+dl_comp:
+ifdef comp
+	kaggle competitions download -c ${comp}
+endif
 
+unzip-data:
+ifdef comp
+	mkdir ~/data/${comp}
+	find ~/.kaggle/competitions/${comp}/ -name "*.zip" -exec unzip {} ~/data/${comp} \;
+endif
