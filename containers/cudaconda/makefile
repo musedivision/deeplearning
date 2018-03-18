@@ -26,7 +26,7 @@ clean:
 	docker rmi -f $$(docker images --filter='reference=${DOCKER_REPO}/${CONTAINER_NAME}' -a -q) || true
 
 build:
-	docker build . -t ${CONTAINER_NAME}:latest
+	docker build . -t ${IMAGE_NAME}:latest
 
 deploy:
 	docker tag ${IMAGE_NAME}:latest ${DOCKER_REPO}/${IMAGE_NAME}
