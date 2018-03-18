@@ -1,0 +1,8 @@
+.git
+.gitignore
+.idea
+.swp
+.pem
+node_modules/
+makefile
+readme.md
