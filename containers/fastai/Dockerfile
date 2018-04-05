@@ -43,6 +43,7 @@ ENV USER fastai
 
 CMD source activate fastai
 CMD source ~/.bashrc
+CMD jupyter serverextension enable --py jupyterlab --sys-prefix
 
 WORKDIR /data
 
@@ -58,4 +59,4 @@ WORKDIR /notebooks
 
 RUN chmod -R a+w /notebooks
 
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
