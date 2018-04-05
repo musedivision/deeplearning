@@ -1,0 +1,3 @@
+[submodule "volume/spot-nuclei"]
+	path = volume/spot-nuclei
+	url = git@github.com:musedivision/spot-nuclei.git
