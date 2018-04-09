@@ -1,10 +1,15 @@
 SHELL:=/bin/bash
 
-include .env
+-include .env
 
+DATAPATH = $(wildcard .datapath)
+
+
+# include .datapath | touch .datapath && read -p 'PLEASE enter the location of your data folder'  || echo $1
 #
 #   CONFIGURABLE VARIABLES
 #
+
 
 #
 #	Project name is propagated to the ECS cluster and it is use to ensure we dont accidentally change the wrong live service
@@ -36,6 +41,7 @@ export ENV												:= dev
 export TAG												:= ${shell date | md5 | cut -c27-}
 export FASTAI											:= .fastai
 export DOCKER_REPO										:= musedivision
+export DATA 											:= '${DATAPATH}'
 
 .PHONY: $(CONTAINERS) $(CONTAINER_TARGETS_WHITELIST) build clean deploy all
 .SILENT: $(CONTAINERS) $(CONTAINER_TARGETS_WHITELIST) all
@@ -46,6 +52,7 @@ export DOCKER_REPO										:= musedivision
 # it causing you to switch to this aws region and this projects credentials
 #
 all: /usr/local/bin/docker-compose
+	echo DATA dir = ${DATA}
 
 
 $(CONTAINERS):
@@ -87,7 +94,7 @@ nuke:
 #
 
 docker-compose.override.yml:
-	@touch docker-compose.override.yml
+	@rm docker-compose.override.yml || touch docker-compose.override.yml
 	@echo version: '"$(DOCKER_COMPOSE_VERSION)"' >> docker-compose.override.yml
 	@echo services: >> docker-compose.override.yml
 	@$(MAKE) $(CONTAINERS) CMD=compile >> docker-compose.override.yml
