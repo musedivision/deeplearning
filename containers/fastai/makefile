@@ -9,6 +9,9 @@ export PROJECT_NAME := 		:= ${COMPOSE_PROJECT_NAME}
 export CONTAINER_PATH       := $(abspath $(lastword $(MAKEFILE_LIST)))
 export CONTAINER_REL_PATH   := $(notdir $(patsubst %/,%,$(dir $(CONTAINER_PATH))))
 export CONTAINER_NAME       := ${CONTAINER_REL_PATH}
+export DATA 				:= $(shell echo ${DATA} | sed 's/\//\\\//g' )
+
+include ../../.datapath
 
 ENV:=dev
 IMAGE_NAME=${CONTAINER_NAME}
@@ -34,7 +37,7 @@ deploy:
 
 # provide the ENV=live to compile the live docker compose branch
 compile:
-	@cat docker-compose.${ENV}.yml | sed 's/CONTAINER_NAME/${CONTAINER_NAME}/g' | sed 's/CONTAINER_REL_PATH/${CONTAINER_REL_PATH}/g'
+	@cat docker-compose.${ENV}.yml | sed 's/CONTAINER_NAME/${CONTAINER_NAME}/g' | sed 's/CONTAINER_REL_PATH/${CONTAINER_REL_PATH}/g' | sed 's/DATA/${DATA}/g' 
 
 
 # IMPORTANT NOTE:

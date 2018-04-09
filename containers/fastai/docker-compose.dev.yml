@@ -3,7 +3,7 @@
     build: containers/CONTAINER_REL_PATH/.
     volumes:
       - ./volume:/notebooks/volume
-      - ../data:/data
+      - DATA:/data
       - ./containers/CONTAINER_REL_PATH/src/.jupyter:/opt/conda/envs/fastai/etc/jupyter
     environment:
       - DATABASE_URL=
