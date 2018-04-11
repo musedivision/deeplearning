@@ -11,7 +11,7 @@ export CONTAINER_REL_PATH   := $(notdir $(patsubst %/,%,$(dir $(CONTAINER_PATH))
 export CONTAINER_NAME       := ${CONTAINER_REL_PATH}
 export DATA 				:= $(shell echo ${DATA} | sed 's/\//\\\//g' )
 
-include ../../.datapath
+# include ../../.datapath
 
 ENV:=dev
 IMAGE_NAME=${CONTAINER_NAME}

@@ -1,0 +1,13 @@
+version: "2"
+services:
+  fastai:
+    container_name: fastai
+    build: containers/fastai/.
+    volumes:
+      - ./volume:/notebooks/volume
+      - /Users/patricio/data:/data
+      - ./containers/fastai/src/.jupyter:/opt/conda/envs/fastai/etc/jupyter
+    environment:
+      - /Users/patricio/dataBASE_URL=
+    ports:
+        - 8889:8888

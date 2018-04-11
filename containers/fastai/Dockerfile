@@ -59,4 +59,4 @@ WORKDIR /notebooks
 
 RUN chmod -R a+w /notebooks
 
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
+# CMD ["echo", "hello you"]
