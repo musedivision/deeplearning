@@ -52,7 +52,8 @@ export DATA 											:= '${DATAPATH}'
 # it causing you to switch to this aws region and this projects credentials
 #
 all: /usr/local/bin/docker-compose
-	echo DATA dir = ${DATA}
+	echo DATA dir: ${DATA}
+	echo containers: ${CONTAINERS}
 
 
 $(CONTAINERS):
