@@ -1,0 +1,3 @@
+  # CONTAINER_REL_PATH:
+  #   container_name: CONTAINER_NAME
+  #   build: containers/CONTAINER_REL_PATH/.
