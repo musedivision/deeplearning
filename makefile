@@ -1,8 +1,7 @@
 SHELL:=/bin/bash
 
 -include .env
-
-DATAPATH = $(wildcard .datapath)
+ 
 
 
 # include .datapath | touch .datapath && read -p 'PLEASE enter the location of your data folder'  || echo $1
