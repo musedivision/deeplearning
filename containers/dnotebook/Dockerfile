@@ -23,8 +23,10 @@ RUN chmod -R a+w /notebooks
 # RUN jupyter serverextension enable --py jupyterlab --sys-prefix
 # RUN cat ~/.jupyter/nbconfig/notebook.json
 
-RUN /opt/conda/bin/ -c 'pip install ipywidgets  && pip install jupyterlab \
-    && jupyter nbextension enable --py widgetsnbextension  --sys-prefix \
-    && jupyter nbextension enable --py jupyterlab  --sys-prefix'
+RUN /bin/bash -c 'pip install ipywidgets  \
+    && jupyter nbextension enable --py widgetsnbextension  --sys-prefix '
+    #  && pip install jupyterlab \
+    # && jupyter nbextension enable --py jupyterlab  --sys-prefix'
 
-CMD ["jupyter", "lab"]
+
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
