@@ -24,6 +24,7 @@ RUN chmod -R a+w /notebooks
 # RUN cat ~/.jupyter/nbconfig/notebook.json
 
 RUN /bin/bash -c 'pip install ipywidgets  \
+    jupyterthemes \
     && jupyter nbextension enable --py widgetsnbextension  --sys-prefix '
     #  && pip install jupyterlab \
     # && jupyter nbextension enable --py jupyterlab  --sys-prefix'
