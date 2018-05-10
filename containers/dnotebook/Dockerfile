@@ -25,7 +25,9 @@ RUN chmod -R a+w /notebooks
 
 RUN /bin/bash -c 'pip install ipywidgets  \
     jupyterthemes \
-    && jupyter nbextension enable --py widgetsnbextension  --sys-prefix '
+    && python -m spacy download en \
+    && jupyter nbextension enable --py widgetsnbextension  --sys-prefix \
+    '
     #  && pip install jupyterlab \
     # && jupyter nbextension enable --py jupyterlab  --sys-prefix'
 
