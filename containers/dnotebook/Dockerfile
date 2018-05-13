@@ -23,10 +23,13 @@ RUN chmod -R a+w /notebooks
 # RUN jupyter serverextension enable --py jupyterlab --sys-prefix
 # RUN cat ~/.jupyter/nbconfig/notebook.json
 
+# seperate new dependency downloads so they can be cached
+
 RUN /bin/bash -c 'pip install ipywidgets  \
     jupyterthemes \
     && python -m spacy download en \
     && jupyter nbextension enable --py widgetsnbextension  --sys-prefix \
+    && jupyter nbextension enable collapsible_headings/main \
     '
     #  && pip install jupyterlab \
     # && jupyter nbextension enable --py jupyterlab  --sys-prefix'
