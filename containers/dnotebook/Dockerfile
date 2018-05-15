@@ -24,6 +24,7 @@ RUN chmod -R a+w /notebooks
 # RUN cat ~/.jupyter/nbconfig/notebook.json
 
 # seperate new dependency downloads so they can be cached
+# TODO
 
 RUN /bin/bash -c 'pip install ipywidgets  \
     jupyterthemes \
