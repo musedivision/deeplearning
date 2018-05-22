@@ -26,6 +26,10 @@ RUN chmod -R a+w /notebooks
 # seperate new dependency downloads so they can be cached
 # TODO
 
+# should upload made images to docker hub so can downlaod them
+# will it build local if there is no uploaded image?
+
+
 RUN /bin/bash -c 'pip install ipywidgets  \
     jupyterthemes \
     && python -m spacy download en \
