@@ -37,7 +37,7 @@ deploy:
 
 # provide the ENV=live to compile the live docker compose branch
 compile:
-	@cat docker-compose.${ENV}.yml | sed 's/CONTAINER_NAME/${CONTAINER_NAME}/g' | sed 's/CONTAINER_REL_PATH/${CONTAINER_REL_PATH}/g' | sed 's/DATA/${DATA}/g' 
+	@cat docker-compose.${ENV}.yml | sed 's/CONTAINER_NAME/${CONTAINER_NAME}/g' | sed 's/CONTAINER_REL_PATH/${CONTAINER_REL_PATH}/g' | sed 's/DATA/${DATA}/g' | sed 's/DOCKER_REPO/${DOCKER_REPO}/g' 
 
 
 # IMPORTANT NOTE:
