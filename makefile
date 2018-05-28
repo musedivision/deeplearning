@@ -50,6 +50,14 @@ export DATA 											:= '${DATAPATH}'
 # This is the first and default recipie.  typing make  or make all will run
 # it causing you to switch to this aws region and this projects credentials
 #
+
+#
+# should be able to choose just the image to download
+#
+#
+#
+
+
 all: /usr/local/bin/docker-compose
 	echo DATA dir: ${DATA}
 	echo containers: ${CONTAINERS}
@@ -66,7 +74,7 @@ deploy:
 
 build:
 	docker-compose down || true
-	@$(MAKE) $(CONTAINERS) CMD=build
+	@$(MAKE) $(CONTAINERS) CMD=build 
 	$(MAKE) docker-compose.override.yml
 	docker-compose up -d
 
